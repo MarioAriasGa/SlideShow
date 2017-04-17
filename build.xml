@@ -6,7 +6,6 @@
               as the first entry and export the buildfile again. -->
 <project basedir="." default="build" name="SlideShow2">
     <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../../../Applications/eclipse"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.5"/>
     <property name="source" value="1.5"/>
@@ -14,6 +13,9 @@
         <pathelement location="bin"/>
         <pathelement location="lib/log4j-1.2.15.jar"/>
         <pathelement location="lib/metadata-extractor-2.3.1.jar"/>
+        <pathelement location="lib/it.tidalwave.imageio.raw-1.6.0.90521d23e1d7.jar"/>
+        <pathelement location="../../Downloads/jogl-1.1.1-macosx-universal/lib/gluegen-rt.jar"/>
+        <pathelement location="../../Downloads/jogl-1.1.1-macosx-universal/lib/jogl.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
@@ -35,22 +37,9 @@
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
-    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
-        <copy todir="${ant.library.dir}">
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </copy>
-        <unzip dest="${ant.library.dir}">
-            <patternset includes="jdtCompilerAdapter.jar"/>
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </unzip>
-    </target>
-    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
-        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
-        <antcall target="build"/>
-    </target>
     <target name="run">
         <java classname="net.homelinux.mck.slideshow.SSLauncher" failonerror="true" fork="yes">
-            <jvmarg line="-Xmx1024M"/>
+            <jvmarg line="-Xmx1024M -Djava.library.path=/Users/mck/Downloads/jogl-1.1.1-macosx-universal/lib"/>
 	    <arg line="/Users/mck/Galeria/"/>
             <classpath refid="SlideShow2.classpath"/>
         </java>
