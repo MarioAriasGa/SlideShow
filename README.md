@@ -25,7 +25,6 @@ The purpose of this software is watching pictures very quickly. Once chosen a fo
 Optionally you can pass the root folder with images that you want to recursivelly scan
 
 # Keyboard shortcuts
-* r: Randomize list of images
 * ESC: Exit
 * Space: Run/Pause slideshow
 * +/-: Next/Previous picture in queue.
