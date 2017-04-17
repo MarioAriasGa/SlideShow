@@ -8,10 +8,11 @@ import com.github.marioariasga.slideshow.view.SSViewAWT;
 import com.github.marioariasga.slideshow.view.SSViewJOGL;
 import com.github.marioariasga.slideshow.view.ViewInterface;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SSController {
-	Logger log = Logger.getLogger(getClass().getName());
+	Logger log = LoggerFactory.getLogger(SSController.class);
 	
 	private static SSController instance;
 	

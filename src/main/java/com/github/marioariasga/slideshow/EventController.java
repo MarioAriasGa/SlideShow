@@ -11,14 +11,15 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.github.marioariasga.slideshow.finder.ImageManagerInterface;
 import com.github.marioariasga.slideshow.view.ViewInterface;
 
-import org.apache.log4j.Logger;
-
 public class EventController implements MouseListener, KeyListener, ActionListener,MouseMotionListener,MouseWheelListener {
 
-	private Logger log = Logger.getLogger(getClass().getName());
+	Logger log = LoggerFactory.getLogger(EventController.class);
 	
 	private SSController controller;
 	private ViewInterface view;
