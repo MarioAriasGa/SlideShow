@@ -1,4 +1,4 @@
-package net.homelinux.mck.slideshow;
+package com.github.marioariasga.slideshow;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -11,9 +11,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.List;
 
-import net.homelinux.mck.slideshow.algorithm.ImageHistogram;
-import net.homelinux.mck.slideshow.finder.ImportantExif;
-import net.homelinux.mck.slideshow.utils.StopWatch;
+import com.github.marioariasga.slideshow.algorithm.ImageHistogram;
+import com.github.marioariasga.slideshow.finder.ImportantExif;
+import com.github.marioariasga.slideshow.utils.StopWatch;
 
 public class SSImageBuffered extends SSImage {
 	private BufferedImage img;

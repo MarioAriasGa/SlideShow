@@ -1,12 +1,12 @@
-package net.homelinux.mck.slideshow;
+package com.github.marioariasga.slideshow;
 
-import net.homelinux.mck.slideshow.finder.ImageManagerInterface;
-import net.homelinux.mck.slideshow.finder.ImageFinder;
-import net.homelinux.mck.slideshow.utils.Config;
-import net.homelinux.mck.slideshow.utils.GUIUtils;
-import net.homelinux.mck.slideshow.view.SSViewAWT;
-import net.homelinux.mck.slideshow.view.SSViewJOGL;
-import net.homelinux.mck.slideshow.view.ViewInterface;
+import com.github.marioariasga.slideshow.finder.ImageManagerInterface;
+import com.github.marioariasga.slideshow.finder.ImageFinder;
+import com.github.marioariasga.slideshow.utils.Config;
+import com.github.marioariasga.slideshow.utils.GUIUtils;
+import com.github.marioariasga.slideshow.view.SSViewAWT;
+import com.github.marioariasga.slideshow.view.SSViewJOGL;
+import com.github.marioariasga.slideshow.view.ViewInterface;
 
 import org.apache.log4j.Logger;
 

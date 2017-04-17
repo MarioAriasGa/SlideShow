@@ -1,4 +1,4 @@
-package net.homelinux.mck.slideshow.view;
+package com.github.marioariasga.slideshow.view;
 
 public class Test {
 

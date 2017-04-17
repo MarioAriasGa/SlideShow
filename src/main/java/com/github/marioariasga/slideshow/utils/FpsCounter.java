@@ -1,4 +1,4 @@
-package net.homelinux.mck.slideshow.utils;
+package com.github.marioariasga.slideshow.utils;
 
 public class FpsCounter {
 	int frames=0;

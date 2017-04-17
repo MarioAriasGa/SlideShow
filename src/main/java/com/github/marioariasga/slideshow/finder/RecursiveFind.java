@@ -1,10 +1,10 @@
-package net.homelinux.mck.slideshow.finder;
+package com.github.marioariasga.slideshow.finder;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import net.homelinux.mck.slideshow.utils.Utils;
+import com.github.marioariasga.slideshow.utils.Utils;
 
 
 public class RecursiveFind implements FinderInterface {

@@ -1,4 +1,4 @@
-package net.homelinux.mck.slideshow.view;
+package com.github.marioariasga.slideshow.view;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -13,9 +13,9 @@ import javax.swing.JFrame;
 import com.apple.eawt.Application;
 import com.apple.eawt.FullScreenUtilities;
 
-import net.homelinux.mck.slideshow.SSController;
-import net.homelinux.mck.slideshow.SSImage;
-import net.homelinux.mck.slideshow.utils.Message;
+import com.github.marioariasga.slideshow.SSController;
+import com.github.marioariasga.slideshow.SSImage;
+import com.github.marioariasga.slideshow.utils.Message;
 
 public abstract class SSView extends Component implements ViewInterface {
 	private static final long serialVersionUID = -8633607810693739885L;

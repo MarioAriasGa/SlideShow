@@ -1,9 +1,9 @@
-package net.homelinux.mck.slideshow.algorithm;
+package com.github.marioariasga.slideshow.algorithm;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.WritableRaster;
 
-import net.homelinux.mck.slideshow.utils.StopWatch;
+import com.github.marioariasga.slideshow.utils.StopWatch;
 
 public class ImageHistogram {
 	int data[][];

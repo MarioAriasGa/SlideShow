@@ -1,6 +1,6 @@
-package net.homelinux.mck.slideshow.mac;
+package com.github.marioariasga.slideshow.mac;
 
-import net.homelinux.mck.slideshow.SSController;
+import com.github.marioariasga.slideshow.SSController;
 
 import org.apache.log4j.Logger;
 

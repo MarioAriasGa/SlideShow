@@ -1,4 +1,4 @@
-package net.homelinux.mck.slideshow.view;
+package com.github.marioariasga.slideshow.view;
 
 import java.awt.Color;
 import java.awt.FontMetrics;
@@ -10,15 +10,15 @@ import javax.swing.JFrame;
 
 import com.apple.eawt.FullScreenUtilities;
 
-import net.homelinux.mck.slideshow.EventController;
-import net.homelinux.mck.slideshow.SSController;
-import net.homelinux.mck.slideshow.SSImageBuffered;
-import net.homelinux.mck.slideshow.finder.ImageManagerInterface;
-import net.homelinux.mck.slideshow.finder.ImageCache;
-import net.homelinux.mck.slideshow.finder.ImageFinder;
-import net.homelinux.mck.slideshow.utils.AnimationObject;
-import net.homelinux.mck.slideshow.utils.FpsCounter;
-import net.homelinux.mck.slideshow.utils.Utils;
+import com.github.marioariasga.slideshow.EventController;
+import com.github.marioariasga.slideshow.SSController;
+import com.github.marioariasga.slideshow.SSImageBuffered;
+import com.github.marioariasga.slideshow.finder.ImageManagerInterface;
+import com.github.marioariasga.slideshow.finder.ImageCache;
+import com.github.marioariasga.slideshow.finder.ImageFinder;
+import com.github.marioariasga.slideshow.utils.AnimationObject;
+import com.github.marioariasga.slideshow.utils.FpsCounter;
+import com.github.marioariasga.slideshow.utils.Utils;
 
 
 public class SSViewAWT extends SSView {

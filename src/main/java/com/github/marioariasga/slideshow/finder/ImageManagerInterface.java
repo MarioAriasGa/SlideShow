@@ -1,6 +1,6 @@
-package net.homelinux.mck.slideshow.finder;
+package com.github.marioariasga.slideshow.finder;
 
-import net.homelinux.mck.slideshow.SSImage;
+import com.github.marioariasga.slideshow.SSImage;
 
 
 public interface ImageManagerInterface {

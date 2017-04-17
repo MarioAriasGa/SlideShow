@@ -1,4 +1,4 @@
-package net.homelinux.mck.slideshow.view;
+package com.github.marioariasga.slideshow.view;
 
 import java.awt.Frame;
 import java.awt.event.WindowAdapter;
@@ -14,18 +14,18 @@ import javax.media.opengl.TraceGL2;
 import javax.media.opengl.awt.GLCanvas;
 import javax.media.opengl.glu.GLU;
 
-import net.homelinux.mck.slideshow.EventController;
-import net.homelinux.mck.slideshow.SSController;
-import net.homelinux.mck.slideshow.SSImage;
-import net.homelinux.mck.slideshow.SSImageTexture;
-import net.homelinux.mck.slideshow.algorithm.ImageHistogram;
-import net.homelinux.mck.slideshow.finder.ImageCache;
-import net.homelinux.mck.slideshow.finder.ImageFinder;
-import net.homelinux.mck.slideshow.finder.ImageManagerInterface;
-import net.homelinux.mck.slideshow.finder.ImportantExif;
-import net.homelinux.mck.slideshow.utils.FpsCounter;
-import net.homelinux.mck.slideshow.utils.StopWatch;
-import net.homelinux.mck.slideshow.utils.Utils;
+import com.github.marioariasga.slideshow.EventController;
+import com.github.marioariasga.slideshow.SSController;
+import com.github.marioariasga.slideshow.SSImage;
+import com.github.marioariasga.slideshow.SSImageTexture;
+import com.github.marioariasga.slideshow.algorithm.ImageHistogram;
+import com.github.marioariasga.slideshow.finder.ImageCache;
+import com.github.marioariasga.slideshow.finder.ImageFinder;
+import com.github.marioariasga.slideshow.finder.ImageManagerInterface;
+import com.github.marioariasga.slideshow.finder.ImportantExif;
+import com.github.marioariasga.slideshow.utils.FpsCounter;
+import com.github.marioariasga.slideshow.utils.StopWatch;
+import com.github.marioariasga.slideshow.utils.Utils;
 
 import com.jogamp.opengl.util.Animator;
 import com.jogamp.opengl.util.gl2.GLUT;

@@ -1,4 +1,4 @@
-package net.homelinux.mck.slideshow;
+package com.github.marioariasga.slideshow;
 
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -11,8 +11,8 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
-import net.homelinux.mck.slideshow.finder.ImageManagerInterface;
-import net.homelinux.mck.slideshow.view.ViewInterface;
+import com.github.marioariasga.slideshow.finder.ImageManagerInterface;
+import com.github.marioariasga.slideshow.view.ViewInterface;
 
 import org.apache.log4j.Logger;
 

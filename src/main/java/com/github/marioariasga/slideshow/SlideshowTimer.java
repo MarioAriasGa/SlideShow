@@ -1,4 +1,4 @@
-package net.homelinux.mck.slideshow;
+package com.github.marioariasga.slideshow;
 
 import javax.swing.Timer;
 

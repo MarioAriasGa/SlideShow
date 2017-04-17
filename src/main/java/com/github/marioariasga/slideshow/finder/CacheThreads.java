@@ -1,4 +1,4 @@
-package net.homelinux.mck.slideshow.finder;
+package com.github.marioariasga.slideshow.finder;
 
 import java.util.ArrayList;
 import java.util.List;

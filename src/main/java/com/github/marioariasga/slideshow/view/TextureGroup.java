@@ -1,4 +1,4 @@
-package net.homelinux.mck.slideshow.view;
+package com.github.marioariasga.slideshow.view;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -7,9 +7,9 @@ import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
 import javax.media.opengl.GLProfile;
 
-import net.homelinux.mck.slideshow.SSImage;
-import net.homelinux.mck.slideshow.SSImageTexture;
-import net.homelinux.mck.slideshow.utils.StopWatch;
+import com.github.marioariasga.slideshow.SSImage;
+import com.github.marioariasga.slideshow.SSImageTexture;
+import com.github.marioariasga.slideshow.utils.StopWatch;
 
 import com.jogamp.opengl.util.texture.Texture;
 import com.jogamp.opengl.util.texture.TextureIO;

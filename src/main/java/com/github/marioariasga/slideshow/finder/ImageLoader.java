@@ -1,4 +1,4 @@
-package net.homelinux.mck.slideshow.finder;
+package com.github.marioariasga.slideshow.finder;
 
 import it.tidalwave.imageio.raw.RAWImageReadParam;
 import it.tidalwave.imageio.raw.Source;
@@ -13,12 +13,12 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 
-import net.homelinux.mck.slideshow.SSImage;
-import net.homelinux.mck.slideshow.SSImageBuffered;
-import net.homelinux.mck.slideshow.SSImageTexture;
-import net.homelinux.mck.slideshow.algorithm.ImageHistogram;
-import net.homelinux.mck.slideshow.utils.Config;
-import net.homelinux.mck.slideshow.utils.StopWatch;
+import com.github.marioariasga.slideshow.SSImage;
+import com.github.marioariasga.slideshow.SSImageBuffered;
+import com.github.marioariasga.slideshow.SSImageTexture;
+import com.github.marioariasga.slideshow.algorithm.ImageHistogram;
+import com.github.marioariasga.slideshow.utils.Config;
+import com.github.marioariasga.slideshow.utils.StopWatch;
 
 import com.drew.imaging.jpeg.JpegMetadataReader;
 import com.drew.metadata.Metadata;

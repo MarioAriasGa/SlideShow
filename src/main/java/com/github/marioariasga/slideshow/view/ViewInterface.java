@@ -1,6 +1,6 @@
-package net.homelinux.mck.slideshow.view;
+package com.github.marioariasga.slideshow.view;
 
-import net.homelinux.mck.slideshow.SSImage;
+import com.github.marioariasga.slideshow.SSImage;
 
 public interface ViewInterface {
 

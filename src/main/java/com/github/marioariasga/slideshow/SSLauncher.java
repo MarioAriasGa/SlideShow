@@ -1,9 +1,9 @@
-package net.homelinux.mck.slideshow;
+package com.github.marioariasga.slideshow;
 
 import java.io.IOException;
 import java.util.Properties;
 
-import net.homelinux.mck.slideshow.mac.MacAppListener;
+import com.github.marioariasga.slideshow.mac.MacAppListener;
 
 import org.apache.log4j.BasicConfigurator;
 

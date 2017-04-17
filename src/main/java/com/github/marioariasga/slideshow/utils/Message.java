@@ -1,4 +1,4 @@
-package net.homelinux.mck.slideshow.utils;
+package com.github.marioariasga.slideshow.utils;
 
 import java.awt.Color;
 import java.awt.FontMetrics;

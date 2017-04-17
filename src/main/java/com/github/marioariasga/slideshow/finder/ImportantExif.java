@@ -1,4 +1,4 @@
-package net.homelinux.mck.slideshow.finder;
+package com.github.marioariasga.slideshow.finder;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,9 +13,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import net.homelinux.mck.slideshow.SSImage;
-import net.homelinux.mck.slideshow.algorithm.ImageHistogram;
-import net.homelinux.mck.slideshow.utils.Utils;
+import com.github.marioariasga.slideshow.SSImage;
+import com.github.marioariasga.slideshow.algorithm.ImageHistogram;
+import com.github.marioariasga.slideshow.utils.Utils;
 
 import com.drew.metadata.Directory;
 import com.drew.metadata.Metadata;

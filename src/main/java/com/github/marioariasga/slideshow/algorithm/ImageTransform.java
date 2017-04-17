@@ -1,4 +1,4 @@
-package net.homelinux.mck.slideshow.algorithm;
+package com.github.marioariasga.slideshow.algorithm;
 
 public class ImageTransform {
 

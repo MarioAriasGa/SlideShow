@@ -1,4 +1,4 @@
-package net.homelinux.mck.slideshow.finder;
+package com.github.marioariasga.slideshow.finder;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -7,9 +7,9 @@ import java.util.Random;
 import java.util.WeakHashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
-import net.homelinux.mck.slideshow.SSController;
-import net.homelinux.mck.slideshow.SSImage;
-import net.homelinux.mck.slideshow.utils.StopWatch;
+import com.github.marioariasga.slideshow.SSController;
+import com.github.marioariasga.slideshow.SSImage;
+import com.github.marioariasga.slideshow.utils.StopWatch;
 
 public class ImageCache {
 	private String uri;

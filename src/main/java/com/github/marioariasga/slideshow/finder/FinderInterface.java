@@ -1,4 +1,4 @@
-package net.homelinux.mck.slideshow.finder;
+package com.github.marioariasga.slideshow.finder;
 
 public interface FinderInterface {
 	public void findAll(String path);
