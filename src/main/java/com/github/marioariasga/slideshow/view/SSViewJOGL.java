@@ -662,7 +662,7 @@ public class SSViewJOGL extends SSView implements GLEventListener {
 		canvas = new GLCanvas(caps);
 
 		// DEBUG
-		canvas.setGL(new TraceGL2((GL2) canvas.getGL(),System.out));
+		//canvas.setGL(new TraceGL2((GL2) canvas.getGL(),System.out));
 		canvas.addGLEventListener(this);
 
 		frame.add(canvas);
