@@ -20,7 +20,7 @@ public class Message {
 	public void paint(Graphics g) {
 		
 		int width = g.getClip().getBounds().width;
-		int height = g.getClip().getBounds().width;
+//		int height = g.getClip().getBounds().width;
 		
 		// Mensaje
 		if(messageTime>System.currentTimeMillis()) {

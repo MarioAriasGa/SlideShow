@@ -22,9 +22,7 @@ import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLCapabilities;
 import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.GLProfile;
-import com.jogamp.opengl.TraceGL2;
 import com.jogamp.opengl.awt.GLCanvas;
-import com.jogamp.opengl.glu.GLU;
 import com.jogamp.opengl.util.Animator;
 import com.jogamp.opengl.util.gl2.GLUT;
 import com.jogamp.opengl.util.texture.TextureCoords;
@@ -33,7 +31,6 @@ import com.jogamp.opengl.util.texture.TextureCoords;
 public class SSViewJOGL extends SSView implements GLEventListener {
 	private static final long serialVersionUID = 904378501605668274L;
 	
-    private static final GLU glu = new GLU();
     private static final GLUT glut = new GLUT();
     
     private FpsCounter fps = new FpsCounter();

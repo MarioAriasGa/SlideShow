@@ -5,7 +5,6 @@ import java.awt.image.BufferedImage;
 
 import com.github.marioariasga.slideshow.SSImage;
 import com.github.marioariasga.slideshow.SSImageTexture;
-import com.github.marioariasga.slideshow.utils.StopWatch;
 import com.jogamp.opengl.GL;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLProfile;
@@ -29,7 +28,6 @@ public class TextureGroup {
 	}
 	
 	TextureGroup(GL2 gl, BufferedImage orig) {
-		StopWatch st = new StopWatch();
 		int width = orig.getWidth();
 		int height = orig.getHeight();
 		

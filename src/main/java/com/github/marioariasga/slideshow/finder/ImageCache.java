@@ -12,7 +12,6 @@ import com.github.marioariasga.slideshow.SSImage;
 import com.github.marioariasga.slideshow.utils.StopWatch;
 
 public class ImageCache {
-	private String uri;
 	private File path;
 	private FinderInterface rf;
 	private Map<Integer, SSImage> map = new ConcurrentHashMap<Integer, SSImage>();
@@ -32,7 +31,6 @@ public class ImageCache {
 	private static ImageCache active=null;
 	
 	public ImageCache(String uri) {
-		this.uri = uri;
 		this.path = new File(uri);
 		rf = new RecursiveFind();
 		rf.findAll(uri);
@@ -188,11 +186,8 @@ public class ImageCache {
 	}
 	
 	public void estimateSize() {
-		long size = 0;
-		for(Integer index : new ArrayList<Integer>(map.keySet())) {
-			SSImage image = map.get(index.intValue());
-			size+=image.estimateSize();
-		}
+		long size = map.values().stream().mapToLong(im->im.estimateSize()).sum();
+		System.out.println(size);
 	}
 	
 	public void removeOld() {

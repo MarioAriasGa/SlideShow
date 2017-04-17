@@ -8,8 +8,6 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.util.Timer;
 
-import javax.swing.JFrame;
-
 /* OSX
 import com.apple.eawt.Application;
 import com.apple.eawt.FullScreenUtilities;

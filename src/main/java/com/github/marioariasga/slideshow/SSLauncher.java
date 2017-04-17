@@ -7,19 +7,8 @@ import java.io.IOException;
 
 
 public class SSLauncher {
-	//private static Logger log = Logger.getLogger(SSLauncher.class);
 	
 	public static void main(String[] args) throws IOException {
-		/*try {
-			String logConfig = "config/logs/traces.xml";
-			DOMConfigurator.configure(logConfig);
-		} catch (Exception e) {
-			BasicConfigurator.configure();
-		}*/
-		//BasicConfigurator.configure();
-		//log.debug("Log initialized");
-		//System.in.read();
-
 		if(args.length>=1) {
 			System.out.println("Initialized with URI: "+args[0]);
 			SSController.getInstance().startWithURI(args[0]);

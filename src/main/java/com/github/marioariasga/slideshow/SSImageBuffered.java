@@ -13,7 +13,6 @@ import java.util.List;
 
 import com.github.marioariasga.slideshow.algorithm.ImageHistogram;
 import com.github.marioariasga.slideshow.finder.ImportantExif;
-import com.github.marioariasga.slideshow.utils.StopWatch;
 
 public class SSImageBuffered extends SSImage {
 	private BufferedImage img;
@@ -39,9 +38,9 @@ public class SSImageBuffered extends SSImage {
     	int imageX=0;
     	int imageY=0;
     	
-    	// Calcular recorte
+    	// Calculate crop
     	if(mode!=MODE_FIT) {
-    		// Coordenadas de la pantalla
+    		// Screen coordinates
     		clipX=0; clipY=0; clipWidth=screenWidth; clipHeight=screenHeight;
 
     		imageWidth=(int) (screenWidth/zoom);
@@ -157,7 +156,6 @@ public class SSImageBuffered extends SSImage {
 	}
 	
 	public void showHistogram(Graphics2D g) {
-		StopWatch s = new StopWatch();
 		ImageHistogram h = getHistogram();
 		
 	    int histWidth = 256*2;

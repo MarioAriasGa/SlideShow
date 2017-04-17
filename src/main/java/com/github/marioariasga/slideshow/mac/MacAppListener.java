@@ -1,9 +1,7 @@
 package com.github.marioariasga.slideshow.mac;
 
-import com.github.marioariasga.slideshow.SSController;
-
-
 /* OSX
+import com.github.marioariasga.slideshow.SSController;
 
 import org.apache.log4j.Logger;
 

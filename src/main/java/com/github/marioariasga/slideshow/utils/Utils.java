@@ -25,8 +25,8 @@ public class Utils {
 		return str;
 	}
 	
-	public static String fechaExif(String fecha) {
-		return fecha;
+	public static String dateExif(String date) {
+		return date;
 	}
 	
 	public static void showMemory(String label) {
