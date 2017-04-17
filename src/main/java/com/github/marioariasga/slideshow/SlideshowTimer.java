@@ -19,13 +19,13 @@ public class SlideshowTimer {
 	public void start() {
 		pause=false;
 		timer.start();
-		controller.getView().setMessage("Reproducciendo");
+		controller.getView().setMessage("Play",2000);
 	}
 	
 	public void stop() {
 		pause=true;
 		timer.stop();
-		controller.getView().setMessage("Pausa");
+		controller.getView().setMessage("Pause");
 	}
 
 	public void tooglePause() {
