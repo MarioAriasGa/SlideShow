@@ -20,6 +20,8 @@ import com.drew.metadata.Metadata;
 import com.drew.metadata.MetadataException;
 import com.drew.metadata.Tag;
 import com.drew.metadata.exif.ExifDirectoryBase;
+import com.drew.metadata.exif.ExifIFD0Directory;
+import com.drew.metadata.exif.ExifSubIFDDirectory;
 
 public class ImportantExif {
 	private static ImportantExif instance=null;
@@ -87,13 +89,13 @@ public class ImportantExif {
     	}
     	
     	// Main Info
-    	lista.add("Dimensiones: "+imgFile.getWidth()+"x"+imgFile.getHeight());
+    	lista.add("Size: "+imgFile.getWidth()+"x"+imgFile.getHeight());
     	lista.add("Megapixel: "+Utils.getMegapixel(imgFile.getWidth(), imgFile.getHeight()));
     	
     	long diskSize = imgFile.getFile().length();
     	long memSize = imgFile.estimateSize();
-    	lista.add("Taman disco: "+Utils.tidyFileSize(diskSize)+" ("+diskSize+" bytes)");
-    	lista.add("Taman memoria: "+Utils.tidyFileSize(memSize)+" ("+memSize+" bytes)");
+    	lista.add("Disk size: "+Utils.tidyFileSize(diskSize)+" ("+diskSize+" bytes)");
+    	lista.add("Mem size: "+Utils.tidyFileSize(memSize)+" ("+memSize+" bytes)");
     	lista.add("Load time: "+imgFile.getLoadTime());
     	ImageHistogram h = imgFile.getHistogram();
     	if(h!=null) {
@@ -103,59 +105,62 @@ public class ImportantExif {
     	
     	HashMap<Integer, Tag> hash = new HashMap<Integer, Tag>();
 
+    	ExifSubIFDDirectory subIFdir = meta.getFirstDirectoryOfType(ExifSubIFDDirectory.class);
+    	ExifIFD0Directory doDir = meta.getFirstDirectoryOfType(ExifIFD0Directory.class);
+    	
     	if(meta!=null) {
-    		Directory exifDirectory = meta.getFirstDirectoryOfType(ExifDirectoryBase.class);
-    		
     		lista.add("---");
-			try {
-				
-	    		addListString(lista, exifDirectory, "Make", ExifDirectoryBase.TAG_MAKE);
-	    		addListString(lista, exifDirectory, "Model", ExifDirectoryBase.TAG_MODEL);
-	    			    		
-	    		addListFloat(lista, exifDirectory, "Focal length", ExifDirectoryBase.TAG_FOCAL_LENGTH);
-	    		addListFloat(lista, exifDirectory, "Focal length 35mm", ExifDirectoryBase.TAG_35MM_FILM_EQUIV_FOCAL_LENGTH);
-	    		
-	    		addListString(lista, exifDirectory, "Aperture", ExifDirectoryBase.TAG_APERTURE);
-	    		addListString(lista, exifDirectory, "Exposure time", ExifDirectoryBase.TAG_SHUTTER_SPEED);
-	    		addListString(lista, exifDirectory, "ISO", ExifDirectoryBase.TAG_ISO_EQUIVALENT);
-	    		
-	    		addListString(lista, exifDirectory, "Flash", ExifDirectoryBase.TAG_FLASH);
-	    		addListString(lista, exifDirectory, "Metering", ExifDirectoryBase.TAG_METERING_MODE);
-	    		addListString(lista, exifDirectory, "White balance", ExifDirectoryBase.TAG_WHITE_BALANCE);
-	    		addListString(lista, exifDirectory, "White balance mode", ExifDirectoryBase.TAG_WHITE_BALANCE_MODE);
-	    		addListString(lista, exifDirectory, "White point", ExifDirectoryBase.TAG_WHITE_POINT);
-	    		addListString(lista, exifDirectory, "Sensing method", ExifDirectoryBase.TAG_SENSING_METHOD);
-	    		addListString(lista, exifDirectory, "Program", ExifDirectoryBase.TAG_EXPOSURE_PROGRAM);
-	    		
-	    		addListString(lista, exifDirectory, "Color space", ExifDirectoryBase.TAG_COLOR_SPACE);
-//	    		addListString(lista, exifDirectory, "Focus mode", );
-	    		addListFloat(lista, exifDirectory, "Subject distance", ExifDirectoryBase.TAG_SUBJECT_DISTANCE);
-	    					
-				if(exifDirectory.containsTag(ExifDirectoryBase.TAG_APERTURE) &&
-						exifDirectory.containsTag(ExifDirectoryBase.TAG_EXPOSURE_TIME) &&
-						exifDirectory.containsTag(ExifDirectoryBase.TAG_ISO_EQUIVALENT)) {
-					double ap = exifDirectory.getDouble(ExifDirectoryBase.TAG_APERTURE);
-					double time = exifDirectory.getDouble(ExifDirectoryBase.TAG_EXPOSURE_TIME);
-					double iso = exifDirectory.getDouble(ExifDirectoryBase.TAG_ISO_EQUIVALENT);
-		    		double ev = calcEV(iso, time, ap);
-		    		lista.add("Abs EV: "+NumberFormat.getInstance().format(ev));
-				}
-	    		
-	    	    
-			} catch (MetadataException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			
-			lista.add("---");
-    		
-			for(Tag tag : exifDirectory.getTags()) {
-		        hash.put(tag.getTagType(), tag);
-//		        System.out.println(tag);
-		        //if(map.containsKey(new Integer(tag.getTagType()))) {
-						lista.add(tag.getTagName()+": "+tag.getDescription());
-		        //}
-		    }
+	    		addListString(lista, doDir, "Make", ExifDirectoryBase.TAG_MAKE);
+	    		addListString(lista, doDir, "Model", ExifDirectoryBase.TAG_MODEL);
+	    		addListString(lista, subIFdir, "Lens", ExifDirectoryBase.TAG_LENS_SPECIFICATION);
+	    			    		
+	    		addListDate(lista, subIFdir, "Date taken", ExifDirectoryBase.TAG_DATETIME_ORIGINAL);
+	    		addListFloat(lista, subIFdir, "Focal length", ExifDirectoryBase.TAG_FOCAL_LENGTH);
+//	    		addListFloat(lista, subIFdir, "Focal length 35mm", ExifDirectoryBase.TAG_35MM_FILM_EQUIV_FOCAL_LENGTH);
+	    		
+	    		addListString(lista, subIFdir, "Aperture", ExifDirectoryBase.TAG_APERTURE);
+	    		addListString(lista, subIFdir, "Exposure time", ExifDirectoryBase.TAG_SHUTTER_SPEED);
+	    		addListString(lista, subIFdir, "Exposure bias", ExifDirectoryBase.TAG_EXPOSURE_BIAS);
+	    		addListString(lista, subIFdir, "ISO", ExifDirectoryBase.TAG_ISO_EQUIVALENT);
+	    		
+	    		
+	    		addListString(lista, subIFdir, "Flash", ExifDirectoryBase.TAG_FLASH);
+	    		addListString(lista, subIFdir, "Metering", ExifDirectoryBase.TAG_METERING_MODE);
+//	    		addListString(lista, subIFdir, "White balance", ExifDirectoryBase.TAG_WHITE_BALANCE);
+	    		addListString(lista, subIFdir, "White balance", ExifDirectoryBase.TAG_WHITE_BALANCE_MODE);
+//	    		addListString(lista, subIFdir, "White point", ExifDirectoryBase.TAG_WHITE_POINT);
+//	    		addListString(lista, subIFdir, "Sensing method", ExifDirectoryBase.TAG_SENSING_METHOD);
+	    		addListString(lista, subIFdir, "Program", ExifDirectoryBase.TAG_EXPOSURE_PROGRAM);
+	    		
+	    		
+	    		
+	    		addListString(lista, subIFdir, "Color space", ExifDirectoryBase.TAG_COLOR_SPACE);
+//	    		addListFloat(lista, subIFdir, "Subject distance", ExifDirectoryBase.TAG_SUBJECT_DISTANCE);
+	    					
+				if(subIFdir.containsTag(ExifDirectoryBase.TAG_APERTURE) &&
+						subIFdir.containsTag(ExifDirectoryBase.TAG_EXPOSURE_TIME) &&
+						subIFdir.containsTag(ExifDirectoryBase.TAG_ISO_EQUIVALENT)) {
+					try {
+						double ap = subIFdir.getDouble(ExifDirectoryBase.TAG_APERTURE);
+						double time = subIFdir.getDouble(ExifDirectoryBase.TAG_EXPOSURE_TIME);
+						double iso = subIFdir.getDouble(ExifDirectoryBase.TAG_ISO_EQUIVALENT);
+						double ev = calcEV(iso, time, ap);
+						lista.add("Abs EV: "+NumberFormat.getInstance().format(ev));
+					} catch (MetadataException e) {
+						e.printStackTrace();
+					}
+				}
+			
+//			lista.add("---");
+//    		
+//			for(Tag tag : exifDirectory.getTags()) {
+//		        hash.put(tag.getTagType(), tag);
+////		        System.out.println(tag);
+//		        //if(map.containsKey(new Integer(tag.getTagType()))) {
+//						lista.add(tag.getTagName()+": "+tag.getDescription());
+//		        //}
+//		    }
     		
 
 //    		lista.add(hash.get(ExifDirectoryBase.TAG_MAKE));
@@ -172,6 +177,43 @@ public class ImportantExif {
     	}
     	
     	return lista;
+    }
+    
+    public void addListDate(List<String> list, Metadata meta, String desc, int item) {
+    	for(Directory dir : meta.getDirectories())
+    	{
+    		if(dir.containsTag(item)) {
+    			list.add(desc+": "+dir.getDate(item));
+    			return;
+    		}
+    	}
+    	list.add(desc+": --");
+    }
+    
+    public void addListString(List<String> list, Metadata meta, String desc, int item) {
+    	for(Directory dir : meta.getDirectories())
+    	{
+    		if(dir.containsTag(item)) {
+    			list.add(desc+": "+dir.getString(item));
+    			return;
+    		}
+    	}
+    	list.add(desc+": --");
+    }
+    
+    public void addListFloat(List<String> list, Metadata meta, String desc, int item) {
+    	for(Directory dir : meta.getDirectories())
+    	{
+    		if(dir.containsTag(item)) {
+    			try {
+					list.add(desc+": "+dir.getFloat(item));
+				} catch (MetadataException e) {
+					e.printStackTrace();
+				}
+    			return;
+    		}
+    	}
+    	list.add(desc+": --");
     }
     
     public void addListDate(List<String> list, Directory dir, String desc, int item) {
