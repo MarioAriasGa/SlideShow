@@ -166,8 +166,8 @@ public class SSImageBuffered extends SSImage {
 		int offy = (int)g.getClipBounds().getHeight()-histHeight-30;
 		int max = h.getMaxvalue();
 		     
-		g.setColor(Color.RED);
-		g.drawString("Avg", offx, histHeight);
+//		g.setColor(Color.RED);
+//		g.drawString("Avg", offx, histHeight);
         
         g.setColor(Color.WHITE);
         g.drawRect(offx-1, offy-1,histWidth+1,histHeight+1);
