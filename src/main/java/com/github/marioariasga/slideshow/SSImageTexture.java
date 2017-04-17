@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.Buffer;
 
-import javax.media.opengl.GLProfile;
+import com.jogamp.opengl.GLProfile;
 
 import com.jogamp.opengl.util.texture.TextureData;
 import com.jogamp.opengl.util.texture.TextureIO;

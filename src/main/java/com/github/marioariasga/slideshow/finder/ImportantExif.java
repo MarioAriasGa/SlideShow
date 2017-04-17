@@ -21,7 +21,7 @@ import com.drew.metadata.Directory;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.MetadataException;
 import com.drew.metadata.Tag;
-import com.drew.metadata.exif.ExifDirectory;
+import com.drew.metadata.exif.ExifDirectoryBase;
 
 public class ImportantExif {
 	private static ImportantExif instance=null;
@@ -37,43 +37,34 @@ public class ImportantExif {
 	
 	public ImportantExif() {
 		map = new HashSet<Integer>();
-		map.add(new Integer(ExifDirectory.TAG_MAKE));
-		map.add(new Integer(ExifDirectory.TAG_MODEL));
-		map.add(new Integer(ExifDirectory.TAG_DATETIME_DIGITIZED));
-		map.add(new Integer(ExifDirectory.TAG_FLASH));
-		map.add(new Integer(ExifDirectory.TAG_FOCAL_LENGTH));
-		map.add(new Integer(ExifDirectory.TAG_EXPOSURE_TIME));
-		map.add(new Integer(ExifDirectory.TAG_35MM_FILM_EQUIV_FOCAL_LENGTH));
-		map.add(new Integer(ExifDirectory.TAG_APERTURE));
-		map.add(new Integer(ExifDirectory.TAG_METERING_MODE));
-		map.add(new Integer(ExifDirectory.TAG_ISO_EQUIVALENT));
-		map.add(new Integer(ExifDirectory.TAG_SUBJECT_DISTANCE));
+		map.add(new Integer(ExifDirectoryBase.TAG_MAKE));
+		map.add(new Integer(ExifDirectoryBase.TAG_MODEL));
+		map.add(new Integer(ExifDirectoryBase.TAG_DATETIME_DIGITIZED));
+		map.add(new Integer(ExifDirectoryBase.TAG_FLASH));
+		map.add(new Integer(ExifDirectoryBase.TAG_FOCAL_LENGTH));
+		map.add(new Integer(ExifDirectoryBase.TAG_EXPOSURE_TIME));
+		map.add(new Integer(ExifDirectoryBase.TAG_35MM_FILM_EQUIV_FOCAL_LENGTH));
+		map.add(new Integer(ExifDirectoryBase.TAG_APERTURE));
+		map.add(new Integer(ExifDirectoryBase.TAG_METERING_MODE));
+		map.add(new Integer(ExifDirectoryBase.TAG_ISO_EQUIVALENT));
+		map.add(new Integer(ExifDirectoryBase.TAG_SUBJECT_DISTANCE));
 	}
 	
 	public static void showExif(Metadata metadata) {
 		
-		Directory exifDirectory = metadata.getDirectory(ExifDirectory.class);
-		String cameraMake = exifDirectory.getString(ExifDirectory.TAG_MAKE);
+		Directory exifDirectory = metadata.getFirstDirectoryOfType(ExifDirectoryBase.class);
+		String cameraMake = exifDirectory.getString(ExifDirectoryBase.TAG_MAKE);
 		System.out.println(cameraMake);
-		String cameraModel = exifDirectory.getString(ExifDirectory.TAG_MODEL);
+		String cameraModel = exifDirectory.getString(ExifDirectoryBase.TAG_MODEL);
 		System.out.println(cameraModel);
 		
 //		 iterate through metadata directories
-		Iterator directories = metadata.getDirectoryIterator();
-		while (directories.hasNext()) {
-		    Directory directory = (Directory)directories.next();
+		for( Directory directory : metadata.getDirectories() ){ 
 		    System.out.println("Directory: "+directory.getName());
 		    // iterate through tags and print to System.out
-		    Iterator tags = directory.getTagIterator();
-		    while (tags.hasNext()) {
-		        Tag tag = (Tag)tags.next();
+		    for(Tag tag : directory.getTags() ){
 		        // use Tag.toString()
-		        try {
-					System.out.println(tag.getTagName()+" | "+tag.getDescription()+"| ");
-				} catch (MetadataException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		    	System.out.println(tag.getTagName()+" | "+tag.getDescription()+"| ");
 		    }
 		}
 	}
@@ -115,39 +106,39 @@ public class ImportantExif {
     	HashMap<Integer, Tag> hash = new HashMap<Integer, Tag>();
 
     	if(meta!=null) {
-    		Directory exifDirectory = meta.getDirectory(ExifDirectory.class);
+    		Directory exifDirectory = meta.getFirstDirectoryOfType(ExifDirectoryBase.class);
     		
     		lista.add("---");
 			try {
 				
-	    		addListString(lista, exifDirectory, "Make", ExifDirectory.TAG_MAKE);
-	    		addListString(lista, exifDirectory, "Model", ExifDirectory.TAG_MODEL);
+	    		addListString(lista, exifDirectory, "Make", ExifDirectoryBase.TAG_MAKE);
+	    		addListString(lista, exifDirectory, "Model", ExifDirectoryBase.TAG_MODEL);
 	    			    		
-	    		addListFloat(lista, exifDirectory, "Focal length", ExifDirectory.TAG_FOCAL_LENGTH);
-	    		addListFloat(lista, exifDirectory, "Focal length 35mm", ExifDirectory.TAG_35MM_FILM_EQUIV_FOCAL_LENGTH);
+	    		addListFloat(lista, exifDirectory, "Focal length", ExifDirectoryBase.TAG_FOCAL_LENGTH);
+	    		addListFloat(lista, exifDirectory, "Focal length 35mm", ExifDirectoryBase.TAG_35MM_FILM_EQUIV_FOCAL_LENGTH);
 	    		
-	    		addListString(lista, exifDirectory, "Aperture", ExifDirectory.TAG_APERTURE);
-	    		addListString(lista, exifDirectory, "Exposure time", ExifDirectory.TAG_SHUTTER_SPEED);
-	    		addListString(lista, exifDirectory, "ISO", ExifDirectory.TAG_ISO_EQUIVALENT);
+	    		addListString(lista, exifDirectory, "Aperture", ExifDirectoryBase.TAG_APERTURE);
+	    		addListString(lista, exifDirectory, "Exposure time", ExifDirectoryBase.TAG_SHUTTER_SPEED);
+	    		addListString(lista, exifDirectory, "ISO", ExifDirectoryBase.TAG_ISO_EQUIVALENT);
 	    		
-	    		addListString(lista, exifDirectory, "Flash", ExifDirectory.TAG_FLASH);
-	    		addListString(lista, exifDirectory, "Metering", ExifDirectory.TAG_METERING_MODE);
-	    		addListString(lista, exifDirectory, "White balance", ExifDirectory.TAG_WHITE_BALANCE);
-	    		addListString(lista, exifDirectory, "White balance mode", ExifDirectory.TAG_WHITE_BALANCE_MODE);
-	    		addListString(lista, exifDirectory, "White point", ExifDirectory.TAG_WHITE_POINT);
-	    		addListString(lista, exifDirectory, "Sensing method", ExifDirectory.TAG_SENSING_METHOD);
-	    		addListString(lista, exifDirectory, "Program", ExifDirectory.TAG_EXPOSURE_PROGRAM);
+	    		addListString(lista, exifDirectory, "Flash", ExifDirectoryBase.TAG_FLASH);
+	    		addListString(lista, exifDirectory, "Metering", ExifDirectoryBase.TAG_METERING_MODE);
+	    		addListString(lista, exifDirectory, "White balance", ExifDirectoryBase.TAG_WHITE_BALANCE);
+	    		addListString(lista, exifDirectory, "White balance mode", ExifDirectoryBase.TAG_WHITE_BALANCE_MODE);
+	    		addListString(lista, exifDirectory, "White point", ExifDirectoryBase.TAG_WHITE_POINT);
+	    		addListString(lista, exifDirectory, "Sensing method", ExifDirectoryBase.TAG_SENSING_METHOD);
+	    		addListString(lista, exifDirectory, "Program", ExifDirectoryBase.TAG_EXPOSURE_PROGRAM);
 	    		
-	    		addListString(lista, exifDirectory, "Color space", ExifDirectory.TAG_COLOR_SPACE);
+	    		addListString(lista, exifDirectory, "Color space", ExifDirectoryBase.TAG_COLOR_SPACE);
 //	    		addListString(lista, exifDirectory, "Focus mode", );
-	    		addListFloat(lista, exifDirectory, "Subject distance", ExifDirectory.TAG_SUBJECT_DISTANCE);
+	    		addListFloat(lista, exifDirectory, "Subject distance", ExifDirectoryBase.TAG_SUBJECT_DISTANCE);
 	    					
-				if(exifDirectory.containsTag(ExifDirectory.TAG_APERTURE) &&
-						exifDirectory.containsTag(ExifDirectory.TAG_EXPOSURE_TIME) &&
-						exifDirectory.containsTag(ExifDirectory.TAG_ISO_EQUIVALENT)) {
-					double ap = exifDirectory.getDouble(ExifDirectory.TAG_APERTURE);
-					double time = exifDirectory.getDouble(ExifDirectory.TAG_EXPOSURE_TIME);
-					double iso = exifDirectory.getDouble(ExifDirectory.TAG_ISO_EQUIVALENT);
+				if(exifDirectory.containsTag(ExifDirectoryBase.TAG_APERTURE) &&
+						exifDirectory.containsTag(ExifDirectoryBase.TAG_EXPOSURE_TIME) &&
+						exifDirectory.containsTag(ExifDirectoryBase.TAG_ISO_EQUIVALENT)) {
+					double ap = exifDirectory.getDouble(ExifDirectoryBase.TAG_APERTURE);
+					double time = exifDirectory.getDouble(ExifDirectoryBase.TAG_EXPOSURE_TIME);
+					double iso = exifDirectory.getDouble(ExifDirectoryBase.TAG_ISO_EQUIVALENT);
 		    		double ev = calcEV(iso, time, ap);
 		    		lista.add("Abs EV: "+NumberFormat.getInstance().format(ev));
 				}
@@ -160,35 +151,26 @@ public class ImportantExif {
 			
 			lista.add("---");
     		
-    		
-    		
-    		Iterator tags = exifDirectory.getTagIterator();
-    		    		
-    		while (tags.hasNext()) {
-		        Tag tag = (Tag) tags.next();
+			for(Tag tag : exifDirectory.getTags()) {
 		        hash.put(tag.getTagType(), tag);
 //		        System.out.println(tag);
 		        //if(map.containsKey(new Integer(tag.getTagType()))) {
-		        	try {
 						lista.add(tag.getTagName()+": "+tag.getDescription());
-					} catch (MetadataException e) {
-
-					}
 		        //}
 		    }
     		
 
-//    		lista.add(hash.get(ExifDirectory.TAG_MAKE));
-//    		lista.add(hash.get(ExifDirectory.TAG_MODEL));
-//    		lista.add(hash.get(ExifDirectory.TAG_DATETIME_DIGITIZED));
-//    		lista.add(hash.get(ExifDirectory.TAG_FLASH));
-//    		lista.add(hash.get(ExifDirectory.TAG_FOCAL_LENGTH));
-//    		lista.add(hash.get(ExifDirectory.TAG_EXPOSURE_TIME));
-//    		lista.add(hash.get(ExifDirectory.TAG_35MM_FILM_EQUIV_FOCAL_LENGTH));
-//    		lista.add(hash.get(ExifDirectory.TAG_APERTURE));
-//    		lista.add(hash.get(ExifDirectory.TAG_METERING_MODE));
-//    		lista.add(hash.get(ExifDirectory.TAG_ISO_EQUIVALENT));
-//    		lista.add(hash.get(ExifDirectory.TAG_SUBJECT_DISTANCE));
+//    		lista.add(hash.get(ExifDirectoryBase.TAG_MAKE));
+//    		lista.add(hash.get(ExifDirectoryBase.TAG_MODEL));
+//    		lista.add(hash.get(ExifDirectoryBase.TAG_DATETIME_DIGITIZED));
+//    		lista.add(hash.get(ExifDirectoryBase.TAG_FLASH));
+//    		lista.add(hash.get(ExifDirectoryBase.TAG_FOCAL_LENGTH));
+//    		lista.add(hash.get(ExifDirectoryBase.TAG_EXPOSURE_TIME));
+//    		lista.add(hash.get(ExifDirectoryBase.TAG_35MM_FILM_EQUIV_FOCAL_LENGTH));
+//    		lista.add(hash.get(ExifDirectoryBase.TAG_APERTURE));
+//    		lista.add(hash.get(ExifDirectoryBase.TAG_METERING_MODE));
+//    		lista.add(hash.get(ExifDirectoryBase.TAG_ISO_EQUIVALENT));
+//    		lista.add(hash.get(ExifDirectoryBase.TAG_SUBJECT_DISTANCE));
     	}
     	
     	return lista;

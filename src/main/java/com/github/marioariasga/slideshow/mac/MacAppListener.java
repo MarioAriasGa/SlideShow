@@ -2,11 +2,13 @@ package com.github.marioariasga.slideshow.mac;
 
 import com.github.marioariasga.slideshow.SSController;
 
+
+/* OSX
+
 import org.apache.log4j.Logger;
 
 import com.apple.eawt.ApplicationEvent;
 import com.apple.eawt.ApplicationListener;
-
 
 
 public class MacAppListener implements ApplicationListener {
@@ -45,3 +47,4 @@ public class MacAppListener implements ApplicationListener {
 	}
 
 }
+*/

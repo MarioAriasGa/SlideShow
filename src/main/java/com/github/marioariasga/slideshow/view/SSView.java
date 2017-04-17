@@ -10,8 +10,10 @@ import java.util.Timer;
 
 import javax.swing.JFrame;
 
+/* OSX
 import com.apple.eawt.Application;
 import com.apple.eawt.FullScreenUtilities;
+*/
 
 import com.github.marioariasga.slideshow.SSController;
 import com.github.marioariasga.slideshow.SSImage;
@@ -120,7 +122,7 @@ public abstract class SSView extends Component implements ViewInterface {
 			fullScreen = true;
 			String os = System.getProperty("os.name");
 			if(os.equals("Mac OS X")) {
-				Application.getApplication().requestToggleFullScreen(frame);
+				// OSX Application.getApplication().requestToggleFullScreen(frame);
 			} else {
 				windowScreenWidth = frame.getWidth();
 				windowsScreenHeight = frame.getHeight();
@@ -150,7 +152,7 @@ public abstract class SSView extends Component implements ViewInterface {
 			
 			String os = System.getProperty("os.name");
 			if(os.equals("Mac OS X")) {
-				Application.getApplication().requestToggleFullScreen(frame);
+				//OSX Application.getApplication().requestToggleFullScreen(frame);
 			} else {
 				if(!System.getProperty("os.name").contains("Windows")) {
 					GraphicsEnvironment.getLocalGraphicsEnvironment()

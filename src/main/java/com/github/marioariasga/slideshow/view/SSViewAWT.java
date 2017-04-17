@@ -8,7 +8,7 @@ import java.awt.geom.AffineTransform;
 
 import javax.swing.JFrame;
 
-import com.apple.eawt.FullScreenUtilities;
+// OSX import com.apple.eawt.FullScreenUtilities;
 
 import com.github.marioariasga.slideshow.EventController;
 import com.github.marioariasga.slideshow.SSController;
@@ -183,9 +183,10 @@ public class SSViewAWT extends SSView {
         frame = new JFrame("SlideShow");
         EventController eventController = controller.getEventController();
         
-        if(System.getProperty("os.name").equals("Mac OS X")) {
-        	FullScreenUtilities.setWindowCanFullScreen(frame, true);
-        }
+// OSX
+//        if(System.getProperty("os.name").equals("Mac OS X")) {
+//        	FullScreenUtilities.setWindowCanFullScreen(frame, true);
+//        }
         
 		// Exitig program on mouse click
 		frame.addKeyListener(eventController);

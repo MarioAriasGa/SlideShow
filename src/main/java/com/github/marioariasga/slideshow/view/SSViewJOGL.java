@@ -5,15 +5,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 
-import javax.media.opengl.GL2;
-import javax.media.opengl.GLAutoDrawable;
-import javax.media.opengl.GLCapabilities;
-import javax.media.opengl.GLEventListener;
-import javax.media.opengl.GLProfile;
-import javax.media.opengl.TraceGL2;
-import javax.media.opengl.awt.GLCanvas;
-import javax.media.opengl.glu.GLU;
-
 import com.github.marioariasga.slideshow.EventController;
 import com.github.marioariasga.slideshow.SSController;
 import com.github.marioariasga.slideshow.SSImage;
@@ -26,7 +17,14 @@ import com.github.marioariasga.slideshow.finder.ImportantExif;
 import com.github.marioariasga.slideshow.utils.FpsCounter;
 import com.github.marioariasga.slideshow.utils.StopWatch;
 import com.github.marioariasga.slideshow.utils.Utils;
-
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.GLAutoDrawable;
+import com.jogamp.opengl.GLCapabilities;
+import com.jogamp.opengl.GLEventListener;
+import com.jogamp.opengl.GLProfile;
+import com.jogamp.opengl.TraceGL2;
+import com.jogamp.opengl.awt.GLCanvas;
+import com.jogamp.opengl.glu.GLU;
 import com.jogamp.opengl.util.Animator;
 import com.jogamp.opengl.util.gl2.GLUT;
 import com.jogamp.opengl.util.texture.TextureCoords;

@@ -62,7 +62,7 @@ public class ImageLoader {
 	
 //		 now you can use the image
 		JPEGDecodeParam decodeParam = jpegDecoder.getJPEGDecodeParam();
-		Metadata metadata = JpegMetadataReader.readMetadata(decodeParam);
+		Metadata metadata = JpegMetadataReader.readMetadata(file);
 //		showExif(metadata);
 		
 		SSImage ssImage = new SSImageTexture(file,image);
@@ -81,7 +81,7 @@ public class ImageLoader {
 	
 //		 now you can use the image
 		JPEGDecodeParam decodeParam = jpegDecoder.getJPEGDecodeParam();
-		Metadata metadata = JpegMetadataReader.readMetadata(decodeParam);
+		Metadata metadata = JpegMetadataReader.readMetadata(file);
 //		showExif(metadata);
 		
 		SSImage ssImage = new SSImageBuffered(file,image);

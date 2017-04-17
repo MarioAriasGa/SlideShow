@@ -1,13 +1,9 @@
 package com.github.marioariasga.slideshow;
 
 import java.io.IOException;
-import java.util.Properties;
 
-import com.github.marioariasga.slideshow.mac.MacAppListener;
-
-import org.apache.log4j.BasicConfigurator;
-
-import com.apple.eawt.Application;
+//OSX: import com.github.marioariasga.slideshow.mac.MacAppListener;
+//OSX: import com.apple.eawt.Application;
 
 
 public class SSLauncher {
@@ -31,7 +27,7 @@ public class SSLauncher {
 			System.out.println("Initialized without path");
 			SSController.getInstance().startWithoutPath();
 //			log.debug("Initializing with mac listener");
-			Application.getApplication().addApplicationListener(new MacAppListener());
+			//OSX Application.getApplication().addApplicationListener(new MacAppListener());
 		}
 	}
 	

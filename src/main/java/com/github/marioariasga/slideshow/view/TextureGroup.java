@@ -3,14 +3,12 @@ package com.github.marioariasga.slideshow.view;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import javax.media.opengl.GL;
-import javax.media.opengl.GL2;
-import javax.media.opengl.GLProfile;
-
 import com.github.marioariasga.slideshow.SSImage;
 import com.github.marioariasga.slideshow.SSImageTexture;
 import com.github.marioariasga.slideshow.utils.StopWatch;
-
+import com.jogamp.opengl.GL;
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.GLProfile;
 import com.jogamp.opengl.util.texture.Texture;
 import com.jogamp.opengl.util.texture.TextureIO;
 import com.jogamp.opengl.util.texture.awt.AWTTextureIO;
