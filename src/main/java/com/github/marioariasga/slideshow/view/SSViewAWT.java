@@ -35,12 +35,10 @@ public class SSViewAWT extends SSView {
 	}
 	
 	public void paint(Graphics g1) {
-		System.out.println("Paint");
 		update(g1);
     }
 	
 	public void update(Graphics g1) {
-		System.out.println("Update");
 		fps.newFrame();
 		
 		Graphics2D g = (Graphics2D) g1;
@@ -48,7 +46,7 @@ public class SSViewAWT extends SSView {
     	//System.out.println("*");
     	
     	g.setColor(Color.black);
-    	g.fillRect(0,0,3000,3000);
+    	g.fillRect(0,0,4000,4000);
     	
     	
     	paintImage(g);
