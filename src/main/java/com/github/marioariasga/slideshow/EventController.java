@@ -80,16 +80,16 @@ public class EventController implements MouseListener, KeyListener, ActionListen
 			// Esc
 			controller.quit();
 		} else if(code==37) {
-			// IZDA
+			// LEFT
 			finder.getCurrent().goLeft();
 		} else if(code==38) {
-			// ARRIBA
+			// UP
 			finder.getCurrent().goUp();
 		} else if(code==39) {
-			// DERECHA
+			// RIGHT
 			finder.getCurrent().goRight();
 		} else if(code==40) {
-			// ABAJO
+			// DOWN
 			finder.getCurrent().goDown();
 
 		} else if(character==' ') {
