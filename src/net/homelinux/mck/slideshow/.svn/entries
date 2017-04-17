@@ -21,13 +21,6 @@ dir
 
 add
 
-SSView.java
-file
-
-
-
-add
-
 SlideshowTimer.java
 file
 
@@ -42,15 +35,15 @@ file
 
 add
 
-algorithm
-dir
+GUIUtils.java
+file
 
 
 
 add
 
-Window.java
-file
+algorithm
+dir
 
 
 
@@ -65,13 +58,6 @@ add
 
 core
 dir
-
-
-
-add
-
-Confirmation.java
-file
 
 
 
@@ -92,6 +78,13 @@ file
 add
 
 ImageFinder.java
+file
+
+
+
+add
+
+SSViewAWT.java
 file
 
 

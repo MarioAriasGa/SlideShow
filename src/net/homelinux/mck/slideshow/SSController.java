@@ -1,5 +1,13 @@
 package net.homelinux.mck.slideshow;
 
+import net.homelinux.mck.slideshow.finder.ImageManagerInterface;
+import net.homelinux.mck.slideshow.finder.ImageFinder;
+import net.homelinux.mck.slideshow.utils.Config;
+import net.homelinux.mck.slideshow.utils.GUIUtils;
+import net.homelinux.mck.slideshow.view.SSViewAWT;
+import net.homelinux.mck.slideshow.view.SSViewJOGL;
+import net.homelinux.mck.slideshow.view.ViewInterface;
+
 import org.apache.log4j.Logger;
 
 public class SSController {
@@ -14,39 +22,38 @@ public class SSController {
 	}
 
 	private EventController eventController;
-	private SSView view;
+	private ViewInterface view;
 	private ImageFinder finder;
-	private Window window;
 	private SlideshowTimer timer;
-	
-
-	private boolean pause=true;
-	
 	
 	private SSController() {
 		// Create instances
 
 		eventController = new EventController(this);
 		timer = new SlideshowTimer(this);
-		view = new SSView(this);
-		window = new Window(this);
-		window.createWindow();
+		
+		if(Config.getInstance().typeIsAWT()) {
+			view = new SSViewAWT(this);
+		} else if(Config.getInstance().typeIsJogl()) {
+			view = new SSViewJOGL(this);
+		}
+		
 		eventController.loadInstances();
 	}
 	
 	public void startWithoutPath() {
-		String path = window.showDirSelect();
+		String path = GUIUtils.showDirSelect();
 		if(path!=null) {
-			startWithPath(path);
+			startWithURI(path);
 		} else {
 			System.exit(0);
 		}
 	}
 	
-	public void startWithPath(String path) {
-		log.debug("setPath: "+path);
+	public void startWithURI(String uri) {
+		log.debug("setPath: "+uri);
 		view.setMessage("Searching...");
-		finder = new ImageFinder(path);
+		finder = new ImageFinder(uri);
 		eventController.loadInstances();
 		timer.start();
         refresh();
@@ -73,16 +80,12 @@ public class SSController {
 		return eventController;
 	}
 
-	public SSView getView() {
+	public ViewInterface getView() {
 		return view;
 	}
 
-	public ImageFinder getFinder() {
+	public ImageManagerInterface getFinder() {
 		return finder;
-	}
-
-	public Window getWindow() {
-		return window;
 	}
 
 	public SlideshowTimer getTimer() {

@@ -1,14 +1,19 @@
 package net.homelinux.mck.slideshow;
 
+import java.io.IOException;
 import java.util.Properties;
 
+import net.homelinux.mck.slideshow.mac.MacAppListener;
+
 import org.apache.log4j.BasicConfigurator;
+
+import com.apple.eawt.Application;
 
 
 public class SSLauncher {
 	//private static Logger log = Logger.getLogger(SSLauncher.class);
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		/*try {
 			String logConfig = "config/logs/traces.xml";
 			DOMConfigurator.configure(logConfig);
@@ -17,15 +22,16 @@ public class SSLauncher {
 		}*/
 		//BasicConfigurator.configure();
 		//log.debug("Log initialized");
+		//System.in.read();
 
 		if(args.length>=1) {
-			System.out.println("Initialized with path: "+args[0]);
-			SSController.getInstance().startWithPath(args[0]);
+			System.out.println("Initialized with URI: "+args[0]);
+			SSController.getInstance().startWithURI(args[0]);
 		} else {
 			System.out.println("Initialized without path");
 			SSController.getInstance().startWithoutPath();
 //			log.debug("Initializing with mac listener");
-//			Application.getApplication().addApplicationListener(new MacAppListener());
+			Application.getApplication().addApplicationListener(new MacAppListener());
 		}
 	}
 	

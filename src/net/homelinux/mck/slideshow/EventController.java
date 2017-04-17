@@ -11,6 +11,9 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
+import net.homelinux.mck.slideshow.finder.ImageManagerInterface;
+import net.homelinux.mck.slideshow.view.ViewInterface;
+
 import org.apache.log4j.Logger;
 
 public class EventController implements MouseListener, KeyListener, ActionListener,MouseMotionListener,MouseWheelListener {
@@ -18,9 +21,8 @@ public class EventController implements MouseListener, KeyListener, ActionListen
 	private Logger log = Logger.getLogger(getClass().getName());
 	
 	private SSController controller;
-	private SSView view;
-	private ImageFinder finder;
-	private Window window;
+	private ViewInterface view;
+	private ImageManagerInterface finder;
 	private SlideshowTimer timer;
 	
 	
@@ -32,7 +34,6 @@ public class EventController implements MouseListener, KeyListener, ActionListen
 	public void loadInstances() {
 		this.view = controller.getView();
 		this.finder = controller.getFinder();
-		this.window = controller.getWindow();
 		this.timer = controller.getTimer();
 	}
 
@@ -74,7 +75,6 @@ public class EventController implements MouseListener, KeyListener, ActionListen
 		
 		System.out.println("KEYPRESS: "+code+" = "+character);
 		
-		
 		if(code==27) {
 			// Esc
 			controller.quit();
@@ -95,19 +95,25 @@ public class EventController implements MouseListener, KeyListener, ActionListen
 			timer.tooglePause();
 		} else if(character=='-') {
 			finder.goPrevious(1);
-		} else if(character=='+') {
+		} else if(character=='=' || code==107) {
 			finder.goNext(1);
 		} else if(code==33) {
 			finder.previousGallery();
 		} else if(code==34) {
 			finder.nextGallery();
-		} else if(code==65) {
-//			controller.rotate(0);
-		} else if(code==83) {
-//			controller.rotate(1);
+		} else if(character=='a') {
+			finder.getCurrent().rotateLeft();
+		} else if(character=='c') {
+			view.toogleCache();
+		} else if(character=='s') {
+			finder.getCurrent().rotateRight();
 		} else if(character=='f') {
 			// f
-			window.toogleFullScreen();
+			view.toogleFullScreen();
+		} else if(character=='g'){
+			System.gc();
+		} else if(character=='h'){
+			view.toogleHistogram();
 		} else if(character=='i'){
 			view.toggleShowFileName();
 		} else if(character=='r') {
@@ -124,29 +130,39 @@ public class EventController implements MouseListener, KeyListener, ActionListen
 			view.toogleVerbose();
 		} else if( character=='0') {
 			finder.getCurrent().setAdjust();
-		} else if( (code>=97) &&(code<=100)) {
-			// 1 4
-			finder.getCurrent().setZoom(code-96);
-		} else if( code==101 ){
-			finder.getCurrent().setZoom(0.5);
-		} else if( code==102 ){
-			finder.getCurrent().setZoom(0.75);
-		} else if(code==103) {
-			finder.getCurrent().setZoom(1.5);
-		} else if( (code>=49) &&(code<=52)) {
-			// 1 4
-			finder.getCurrent().setZoom(code-48);
+		} else if( character=='1') {
+			finder.getCurrent().setZoom(0.05f);
+		} else if( character=='2') {
+			finder.getCurrent().setZoom(0.2f);
+		} else if( character=='3') {
+			finder.getCurrent().setZoom(0.4f);
+		} else if( character=='4') {
+			finder.getCurrent().setZoom(0.65f);
+		} else if( character=='5' ){
+			finder.getCurrent().setZoom(1.0f);
+		} else if( character=='6' ){
+			finder.getCurrent().setZoom(2.0f);
+		} else if( character=='7') {
+			finder.getCurrent().setZoom(4.0f);
+		} else if( character=='8') {
+			finder.getCurrent().setZoom(8.0f);
+		} else if( character=='9') {
+			finder.getCurrent().setZoom(16.0f);
 		} else if(code==127) {
 			// supr
 			timer.stop();
-			window.setFullScreen(false);
+			boolean wasFull = view.isFullScreen();
+			view.setFullScreen(false);
 			finder.deleteImage();
+			view.setFullScreen(wasFull);
 			view.refresh();
 		} else if(code==8) {
 			// backspace
 			timer.stop();
-			window.setFullScreen(false);
-			finder.deleteGallery();
+			boolean wasFull = view.isFullScreen();
+			view.setFullScreen(false);
+//			finder.deleteGallery();
+			view.setFullScreen(wasFull);
 			view.refresh();
 		} else if(code==10) {
 			// Enter
