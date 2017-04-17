@@ -2,14 +2,11 @@ package net.homelinux.mck.slideshow;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.File;
 import java.util.List;
 
@@ -30,8 +27,7 @@ public class SSImage {
 	private int offsetx=0;
 	private int offsety=0;
 	
-	private double zoom=1.0f;
-	private float angle=0.0f;
+	private double zoom=1.0;
 	
 	private int index;
 	private long loadtime=0;
@@ -70,7 +66,7 @@ public class SSImage {
 		this.img = img;
 	}
 	
-	public void paint(Component parent, Graphics g) {
+	public void paint(Graphics g) {
 	 	if(img==null) return;
 	 	
     	int iw = img.getWidth();
@@ -133,11 +129,11 @@ public class SSImage {
     		if(imgAspect>scrAspect) {
     			cw =sw;
     			ch = (int) (((double)sw)/imgAspect);
-    			zoom = (float)sw/(float)iw;
+    			zoom = (double)sw/(double)iw;
     		} else {
     			ch = sh;
     			cw = (int) (((double)sh)*imgAspect);
-    			zoom = (float)sh/(float)ih;
+    			zoom = (double)sh/(double)ih;
     		}
     	}
     	
@@ -154,8 +150,8 @@ public class SSImage {
 //    	
     	g.drawImage(img, 
     			cx, cy, cx+cw, cy+ch,	
-    			ix, iy, ix+iw, iy+ih, parent
-    	);
+    			ix, iy, ix+iw, iy+ih,
+    			null);
 //    	
 //    	((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 //                RenderingHints.VALUE_ANTIALIAS_OFF);
@@ -206,24 +202,24 @@ public class SSImage {
 
 	}
 
-	public void setZoom(float i) {
+	public void setZoom(double i) {
 		zoom = i;
 
 		if(zoom<0.1)
-			zoom=0.1f;
+			zoom=0.1;
 		
 		mode = MODE_ZOOM;
 	}
 	
 	public void increaseZoom() {
-		setZoom(getZoom() * 1.2f);
+		setZoom(getZoom() * 1.2);
 	}
 	
 	public void decreaseZoom() {
-		setZoom(getZoom() / 1.2f);
+		setZoom(getZoom() / 1.2);
 	}
 	
-	public float getZoom() {
+	public double getZoom() {
 		return zoom;
 	}
 	
@@ -232,14 +228,12 @@ public class SSImage {
 	}
 	
 	private void tidiOffset() {
-		/*
 		if(offsetx<0) offsetx = 0;
 		if(offsety<0) offsety = 0;
 		if(offsetx>img.getWidth()) 
 			offsetx = img.getWidth();
 		if(offsety>img.getHeight()) 
 			offsety = img.getHeight();
-		*/
 	}
 
 	public void goUp() {
@@ -291,21 +285,5 @@ public class SSImage {
 		return StopWatch.msToString(this.loadtime);
 	}
 
-	public void rotate() {
-		angle += 90.0f;
-		if(angle>=360) angle = angle % 360;
-		System.out.println("Angle: "+angle);
-	}
-	
-	public float getAngle() {
-		return angle;
-	}
 
-	public float getOffsetX() {
-		return offsetx;
-	}
-	
-	public float getOffsetY() {
-		return offsety;
-	}
 }

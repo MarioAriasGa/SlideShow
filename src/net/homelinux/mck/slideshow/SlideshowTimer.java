@@ -19,7 +19,7 @@ public class SlideshowTimer {
 	public void start() {
 		pause=false;
 		timer.start();
-		controller.getView().setMessage("Reproducciendo");
+		controller.getView().setMessageTemp("Reproducciendo");
 	}
 	
 	public void stop() {

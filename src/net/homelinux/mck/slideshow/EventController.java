@@ -18,8 +18,9 @@ public class EventController implements MouseListener, KeyListener, ActionListen
 	private Logger log = Logger.getLogger(getClass().getName());
 	
 	private SSController controller;
-	private ViewInterface view;
+	private SSView view;
 	private ImageFinder finder;
+	private Window window;
 	private SlideshowTimer timer;
 	
 	
@@ -31,6 +32,7 @@ public class EventController implements MouseListener, KeyListener, ActionListen
 	public void loadInstances() {
 		this.view = controller.getView();
 		this.finder = controller.getFinder();
+		this.window = controller.getWindow();
 		this.timer = controller.getTimer();
 	}
 
@@ -100,10 +102,12 @@ public class EventController implements MouseListener, KeyListener, ActionListen
 		} else if(code==34) {
 			finder.nextGallery();
 		} else if(code==65) {
-			finder.getCurrent().rotate();
+//			controller.rotate(0);
+		} else if(code==83) {
+//			controller.rotate(1);
 		} else if(character=='f') {
 			// f
-			view.toogleFullScreen();
+			window.toogleFullScreen();
 		} else if(character=='i'){
 			view.toggleShowFileName();
 		} else if(character=='r') {
@@ -124,24 +128,24 @@ public class EventController implements MouseListener, KeyListener, ActionListen
 			// 1 4
 			finder.getCurrent().setZoom(code-96);
 		} else if( code==101 ){
-			finder.getCurrent().setZoom(0.5f);
+			finder.getCurrent().setZoom(0.5);
 		} else if( code==102 ){
-			finder.getCurrent().setZoom(0.75f);
+			finder.getCurrent().setZoom(0.75);
 		} else if(code==103) {
-			finder.getCurrent().setZoom(1.5f);
+			finder.getCurrent().setZoom(1.5);
 		} else if( (code>=49) &&(code<=52)) {
 			// 1 4
 			finder.getCurrent().setZoom(code-48);
 		} else if(code==127) {
 			// supr
 			timer.stop();
-			view.setFullScreen(false);
+			window.setFullScreen(false);
 			finder.deleteImage();
 			view.refresh();
 		} else if(code==8) {
 			// backspace
 			timer.stop();
-			view.setFullScreen(false);
+			window.setFullScreen(false);
 			finder.deleteGallery();
 			view.refresh();
 		} else if(code==10) {

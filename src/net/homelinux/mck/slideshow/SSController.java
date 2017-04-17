@@ -14,8 +14,9 @@ public class SSController {
 	}
 
 	private EventController eventController;
-	private ViewInterface view;
+	private SSView view;
 	private ImageFinder finder;
+	private Window window;
 	private SlideshowTimer timer;
 	
 
@@ -27,15 +28,14 @@ public class SSController {
 
 		eventController = new EventController(this);
 		timer = new SlideshowTimer(this);
-		
-		//view = new SSViewAWT(this);
-		view = new SSViewJOGL(this);
-		
+		view = new SSView(this);
+		window = new Window(this);
+		window.createWindow();
 		eventController.loadInstances();
 	}
 	
 	public void startWithoutPath() {
-		String path = GUIUtils.showDirSelect();
+		String path = window.showDirSelect();
 		if(path!=null) {
 			startWithPath(path);
 		} else {
@@ -73,12 +73,16 @@ public class SSController {
 		return eventController;
 	}
 
-	public ViewInterface getView() {
+	public SSView getView() {
 		return view;
 	}
 
 	public ImageFinder getFinder() {
 		return finder;
+	}
+
+	public Window getWindow() {
+		return window;
 	}
 
 	public SlideshowTimer getTimer() {

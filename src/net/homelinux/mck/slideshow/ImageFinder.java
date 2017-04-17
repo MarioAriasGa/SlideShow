@@ -92,7 +92,7 @@ public class ImageFinder {
 
 	public void deleteImage() {
 		File f = getCurrent().getFile();
-		if(GUIUtils.confirm("Desea borrar IMAGEN: "+f)) {
+		if(Confirmation.confirm("Desea borrar IMAGEN: "+f)) {
 			System.out.println("BORRANDO: "+f);
 			cache.deleteFile();
 		}
@@ -100,7 +100,7 @@ public class ImageFinder {
 	
 	public void deleteGallery() {
 		File f = getCurrent().getFile().getParentFile();
-		if(GUIUtils.confirm("Desea borrar GALERIA: "+f)) {
+		if(Confirmation.confirm("Desea borrar GALERIA: "+f)) {
 			System.out.println("BORRANDO: "+f);
 			cache.deleteGallery();
 		}

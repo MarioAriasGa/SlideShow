@@ -1,7 +1,5 @@
 package net.homelinux.mck.slideshow.core;
 
-import java.awt.Graphics2D;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,7 +26,6 @@ public class ImageLoader {
 		} else {
 			newSSImage = openGeneric(file);
 		}
-		newSSImage.setImg(resize(newSSImage.getImg(), 4096));
 		System.out.println(" -"+Thread.currentThread().getName()+" Read ok "+path+" in "+st.stopAndShow());
 		newSSImage.setLoadTime(st.getMeasure());
 		return newSSImage;
@@ -57,30 +54,5 @@ public class ImageLoader {
 	private static boolean fileIsJpeg(String path) {
 		String lcPath = path.toLowerCase();
 		return ( lcPath.endsWith(".jpg") || lcPath.endsWith(".jpeg"));
-	}
-	
-	private static BufferedImage resize(BufferedImage orig, int maxComponent) {
-		double width = orig.getWidth();
-		double height = orig.getHeight();
-		double destWidth=orig.getWidth();
-		double destHeight=orig.getHeight();
-		
-		if(width<maxComponent && height<maxComponent)
-			return orig;
-		
-		if(width>height) {
-			destWidth *= maxComponent / width;
-			destHeight *= maxComponent / width; 
-		} else {
-			destWidth *= maxComponent / height;
-			destHeight *= maxComponent / height;
-		}
-		System.out.println("Resize to: "+destWidth+"x"+destHeight);
-		BufferedImage dest = new BufferedImage((int)destWidth,(int)destHeight, BufferedImage.TYPE_INT_RGB);
-		Graphics2D g = dest.createGraphics();
-		AffineTransform at = AffineTransform.getScaleInstance( destWidth/orig.getWidth(), destHeight/orig.getHeight());
-		g.drawRenderedImage(orig,at);
-		
-		return dest;
 	}
 }
